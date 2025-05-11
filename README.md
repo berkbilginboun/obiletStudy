@@ -55,13 +55,13 @@ The filtering system uses a Python script that:
 ```python
 query = [
   ["balcony"],
-  ["air conditioning", "ac"],
+  ["air conditioning"],
   ["city view"]
 ]
-min_match = 2
+min_match = 3
 ```
 
-A caption will match if **any 2 of the 3 groups** are satisfied.
+A caption will match if **any 3 of the 3 groups** are satisfied.
 
 ---
 
