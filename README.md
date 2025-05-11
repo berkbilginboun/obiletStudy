@@ -31,11 +31,12 @@ The filtering logic uses customizable keyword groups with `min_match` thresholds
 ## 📁 File Structure
 
 hotel_caption_filtering_case/
-├── captions.json         # All manually written image captions
-├── main.py               # Caption filtering logic + CSV output
-├── query_results.csv     # Final output per query
-├── create_json.py        # (Optional) Generates captions.json
-└── README.md             # This file
+
+   -├── captions.json         # All manually written image captions
+   -├── main.py               # Caption filtering logic + CSV output
+   -├── query_results.csv     # Final output per query
+   -├── create_json.py        # (Optional) Generates captions.json
+   -└── README.md             # This file
 
 ---
 
