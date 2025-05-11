@@ -126,7 +126,7 @@ This will:
 
 ## 👤 Author
 
-This project was completed by [Muhammed Berk Bilgin]  
+This project was completed by **M.Berk Bilgin**  
 as part of the **oBilet AI Internship Case Study**.
 
 If you have any questions or feedback, feel free to connect via GitHub.
