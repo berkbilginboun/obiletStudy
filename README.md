@@ -1,51 +1,132 @@
-# Hotel Image Caption Filtering Case Study
+# 🏨 Hotel Image Caption Filtering — AI Internship Case Study
 
-This project was completed as part of an AI internship application at **oBilet**. The task involved analyzing hotel room images, generating human-like captions for each, and programmatically filtering the rooms based on specific user queries.
-
----
-
-## 🔍 Problem Definition
-
-Given a set of 15 hotel room images, the goal was to:
-1. Generate detailed and realistic text descriptions (captions) for each image
-2. Filter rooms based on textual content according to 4 user queries:
-   - Double rooms with a sea view
-   - Rooms with a balcony and air conditioning, with a city view
-   - Triple rooms with a desk
-   - Rooms with a maximum capacity of 4 people
-3. Export matching results into a structured CSV format
+This project was completed as part of the AI internship application at **oBilet**. It focuses on combining human-led image interpretation with programmatic filtering based on natural language descriptions.
 
 ---
 
-## 🧠 Solution Approach
+## 🔍 Problem Overview
 
-- All captions were manually written by analyzing the images carefully.
-- A JSON file (`captions.json`) stores these descriptions.
-- A Python script (`main.py`) loads these captions, applies flexible keyword-based filtering logic, and outputs the matching image URLs per query.
-- Matching results are saved in `query_results.csv`.
+You are provided with a set of **15 hotel room images**, each needing to be:
 
-The filtering logic uses customizable keyword groups with `min_match` thresholds to handle fuzzy, natural-language descriptions effectively.
+1. Carefully analyzed  
+2. Described with a clear and informative **caption**  
+3. Filtered programmatically based on **user search queries** such as:
+   - `"Double rooms with a sea view"`
+   - `"Rooms with a balcony and air conditioning, with a city view"`
+   - `"Triple rooms with a desk"`
+   - `"Rooms with a maximum capacity of 4 people"`
+
+The final goal is to identify which images satisfy which query, and export the results in a `.csv` format.
 
 ---
 
-## 📁 File Structure
+## 🧠 System Overview
 
-hotel_caption_filtering_case/
+The solution is broken into three core stages:
 
-   -├── captions.json         # All manually written image captions
-   
-   -├── main.py               # Caption filtering logic + CSV output
-   
-   -├── query_results.csv     # Final output per query
-   
-   -├── create_json.py        # (Optional) Generates captions.json
-   
+### 1. **Manual Caption Generation** (`captions.json`)
+
+Each image is manually reviewed by a human (me), and its contents — such as bed types, view, room layout, and furniture — are written into a clear English caption.
+
+Example entry from `captions.json`:
+
+```json
+{
+  "13": "A charming triple room decorated in light tones, featuring one double bed and two single beds, making it suitable for families or small groups. The room includes a small round table with two chairs, a flat-screen TV, and a large window offering a clear sea view. A small desk with a chair is also available for work or study, enhancing the functionality of the space."
+}
+```
+
+---
+
+### 2. **Flexible Keyword-Based Filtering** (`main.py`)
+
+The filtering system uses a Python script that:
+
+- Loads all captions from `captions.json`
+- Defines queries as **groups of keyword sets**  
+  (e.g. `["balcony"]`, `["air conditioning", "ac"]`, `["city view"]`)
+- Applies a smart filter that:
+  - Uses **AND logic** between keyword groups
+  - Uses **OR logic** within each group
+  - Supports a **`min_match` threshold** to allow partial matches
+
+#### Example for Query 2:
+
+```python
+query = [
+  ["balcony"],
+  ["air conditioning", "ac"],
+  ["city view"]
+]
+min_match = 2
+```
+
+A caption will match if **any 2 of the 3 groups** are satisfied.
+
+---
+
+### 3. **Result Export to CSV** (`query_results.csv`)
+
+For each query, the matching image IDs and their corresponding URLs are written into a structured CSV file.
+
+Example output:
+
+```
+Query #,Query Description,Image #,URL
+1,Double rooms with a sea view,2,https://.../2.jpg
+3,Triple rooms with a desk,13,https://.../13.jpg
+```
+
+---
+
+## 📁 Project Structure
+
+```
+hotel-caption-filtering-case/
+
+   -├── captions.json         # Manually written image captions
+
+   -├── main.py               # Core filtering logic + CSV export
+
+   -├── query_results.csv     # Final output of matched results
+
+   -├── create_json.py        # (Optional) Code to create captions.json
+
    -└── README.md             # This file
+```
 
 ---
 
 ## ▶️ How to Run
 
+Make sure you have Python 3 installed. Then:
+
 ```bash
-# Install dependencies (no external libraries required)
 python main.py
+```
+
+This will:
+
+- Load `captions.json`
+- Run filtering logic for all 4 queries
+- Save matching results to `query_results.csv`
+
+> ✅ No external libraries are required — only `json` and `csv`.
+
+---
+
+## 💡 Key Highlights
+
+- ✅ All image analysis was done **manually** — no AI model was used.
+- ✅ Filtering logic is **modular, explainable, and easily adjustable**.
+- ✅ Written in clean Python with zero dependencies.
+- ✅ Result format is portable and easy to validate (CSV output).
+
+---
+
+## 👤 Author
+
+This project was completed by [Muhammed Berk Bilgin]  
+as part of the **oBilet AI Internship Case Study**.
+
+If you have any questions or feedback, feel free to connect via GitHub.
